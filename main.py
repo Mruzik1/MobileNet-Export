@@ -4,7 +4,7 @@ sys.path.append('./mobilenets-ssd-pytorch')
 import torch
 import onnx
 import onnxsim
-from vision.ssd.mobilenetv1_ssd_lite import *
+from custom_models import *
 
 
 model = create_mobilenetv1_ssd_lite(80)

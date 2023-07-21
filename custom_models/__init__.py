@@ -1,1 +1,1 @@
-from .mobilenetv1_ssd_lite import create_mobilenetv1_ssd_lite, create_mobilenetv1_ssd_lite_predictor
+from .mobilenetv1_ssd_lite import create_mobilenetv1_ssd_lite

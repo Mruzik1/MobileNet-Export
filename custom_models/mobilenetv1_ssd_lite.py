@@ -1,12 +1,10 @@
 import sys
 sys.path.append('./mobilenets-ssd-pytorch')
 
-import torch
-from torch.nn import Conv2d, Sequential, ModuleList, ReLU, BatchNorm2d
+from torch.nn import Conv2d, Sequential, ModuleList, ReLU
 from vision.nn.mobilenet import MobileNetV1
 
-from vision.ssd.ssd import SSD
-from vision.ssd.predictor import Predictor
+from .ssd import SSD
 from vision.ssd.config import mobilenetv1_ssd_config as config
 
 
@@ -71,14 +69,3 @@ def create_mobilenetv1_ssd_lite(num_classes, is_test=False):
 
     return SSD(num_classes, base_net, source_layer_indexes,
                extras, classification_headers, regression_headers, is_test=is_test, config=config)
-
-
-def create_mobilenetv1_ssd_lite_predictor(net, candidate_size=200, nms_method=None, sigma=0.5, device=None):
-    predictor = Predictor(net, config.image_size, config.image_mean,
-                          config.image_std,
-                          nms_method=nms_method,
-                          iou_threshold=config.iou_threshold,
-                          candidate_size=candidate_size,
-                          sigma=sigma,
-                          device=device)
-    return predictor

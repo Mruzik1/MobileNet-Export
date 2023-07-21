@@ -1,0 +1,3 @@
+[submodule "mobilenets-ssd-pytorch"]
+	path = mobilenets-ssd-pytorch
+	url = https://github.com/tranleanh/mobilenets-ssd-pytorch.git

@@ -4,12 +4,15 @@ sys.path.append('./mobilenets-ssd-pytorch')
 import torch
 import onnx
 import onnxsim
-from custom_models import *
+import blobconverter
+from vision.ssd.mobilenet_v2_ssd_lite import create_mobilenetv2_ssd_lite
 
 
-model = create_mobilenetv1_ssd_lite(80, is_test=True)
-dummy_input = torch.randn((1, 3, 300, 300))
-f_path = 'exported/mobilenet_nms.onnx'
+# model = create_mobilenetv2_ssd_lite(21, is_test=True)
+# model.load('exported/mb2.pth')
+
+# dummy_input = torch.randn((1, 3, 300, 300))
+# f_path = 'exported/mobilenetv2.onnx'
 
 # print('Exporting...')
 # torch.onnx.export(model, dummy_input, f_path)
@@ -20,3 +23,5 @@ f_path = 'exported/mobilenet_nms.onnx'
 # onnx_model, check = onnxsim.simplify(onnx_model)
 # onnx.save(onnx_model, f_path)
 # print('Simplified!')
+
+blobconverter.from_openvino('exported/openvino/mobilenetv2_test.xml', 'exported/openvino/mobilenetv2_test.bin')
